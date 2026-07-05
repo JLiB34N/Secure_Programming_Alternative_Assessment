@@ -1,0 +1,1 @@
+{"version":2,"defects":[],"times":{"CryptographicLifecycleTest::test_untampered_payload_decryption":0.004,"CryptographicLifecycleTest::test_tampered_payload_throws_aead_exception":0.002,"CryptographicLifecycleTest::test_credential_hash_integrity_matches":0.383}}

@@ -1,0 +1,12 @@
+{
+    "name": "hp/updated",
+    "authors": [
+        {
+            "name": "JLiB34N",
+            "email": "139790418+JLiB34N@users.noreply.github.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "13"
+    }
+}
