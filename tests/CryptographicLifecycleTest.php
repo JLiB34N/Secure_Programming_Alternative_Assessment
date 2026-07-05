@@ -2,20 +2,16 @@
 use PHPUnit\Framework\TestCase;
 use Exception;
 
-// 1. Define a dedicated exception for cryptographic failures
 class AeadAuthenticationException extends Exception {}
 
 class CryptographicLifecycleTest extends TestCase {
     
-    // 2. Added type declarations for parameters and return types
     private function encryptGCM(string $plaintext, string $key): string {
         $iv = random_bytes(12);
-        // $tag is passed by reference and populated by openssl_encrypt
         $ciphertext = openssl_encrypt($plaintext, 'aes-256-gcm', $key, OPENSSL_RAW_DATA, $iv, $tag);
         return base64_encode($iv . $tag . $ciphertext);
     }
 
-    // 2. Added type declarations for parameters and return types
     private function decryptGCM(string $payload, string $key): string {
         $decoded = base64_decode($payload);
         $iv = substr($decoded, 0, 12);
@@ -50,7 +46,6 @@ class CryptographicLifecycleTest extends TestCase {
         // Active Payload Manipulation: Corrupting the base64 string to simulate integrity breach
         $encrypted[strlen($encrypted) - 1] = 'X';
         
-        // Update the test assertion to expect the new dedicated exception
         $this->expectException(AeadAuthenticationException::class);
         $this->expectExceptionMessage("AEAD Authentication Tag Mismatch");
         
