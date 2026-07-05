@@ -6,8 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $medical_payload = $_POST['payload'] ?? '';
     
     // 1. Solves Hidden Flaw G (Hardcoded Key):
-    // We now retrieve the key from the secure external .env configuration
-    // Note: In a real app, a package like vlucas/phpdotenv would load this.
+    // Now retrieve the key from the secure external .env configuration
     $secret_key = base64_decode($_ENV['MEDVAULT_MASTER_KEY'] ?? '');
     
     if (empty($secret_key) || strlen($secret_key) !== 32) {
